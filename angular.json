@@ -21,10 +21,17 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "*",
+                "input": "node_modules/mdi/fonts/*.+(eot|svg|ttf|woff|woff2)",
+                "output": "assets/materialdesigniconfont/"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/bulma.css",
+              "node_modules/mdi/css/materialdesignicons.min.css"
             ],
             "scripts": []
           },

@@ -1,0 +1,25 @@
+<div *ngIf="this.button.link !== null">
+  <a href="{{this.button.link}}">
+    <button class="button {{this.getButtonClassString()}}">
+      <span class="icon">
+        <i class="mdi mdi-{{this.button.iconSuffix}} mdi-24px">
+        </i>
+      </span>
+      <span>
+        {{this.button.title}}
+      </span>
+    </button>
+  </a>
+</div>
+
+<div *ngIf="!this.button.link">
+  <button class="button {{this.getButtonClassString()}}" (click)="this.button.clickFunction()">
+    <span class="icon">
+      <i class="mdi mdi-{{this.button.iconSuffix}} mdi-24px">
+      </i>
+    </span>
+    <span>
+      {{this.button.title}}
+    </span>
+  </button>
+</div>

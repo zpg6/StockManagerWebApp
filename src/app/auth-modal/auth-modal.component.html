@@ -1,0 +1,225 @@
+
+<div class="modal is-active" #modal>
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+        {{ appData.title + ' - ' + tab }}
+      </p>
+      <button class="delete" aria-label="close" (click)="toggleModalOpen()"></button>
+    </header>
+    <section class="modal-card-body">
+      <div class="tabs is-medium is-centered">
+        <ul>
+          <li class="is-active" (click)="toggleTab()" #loginTab><a>Login</a></li>
+          <li (click)="toggleTab()" #createAnAccountTab><a>Create an Account</a></li>
+        </ul>
+      </div>
+
+      <div *ngIf="tab === 'Create an Account'">
+        <div class="field">
+          <label class="label">Invitation Code</label>
+          <div class="control has-icons-left has-icons-right">
+
+            <input class="input" type="text" placeholder="Invitation Code" #invitationCodeField>
+
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-24px mdi-email"></i>
+            </span>
+
+
+            <div *ngIf="invitationCodeError">
+              <div *ngIf="invitationCodeError === ''">
+                <span class="icon is-small is-right">
+                  <i class="mdi mdi-24px mdi-check-circle"></i>
+                </span>
+              </div>
+              <div *ngIf="invitationCodeError !== ''">
+                <span class="icon is-small is-right">
+                  <i class="mdi mdi-24px mdi-alert-circle"></i>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="invitationCodeError">
+            <p class="help is-danger">{{ invitationCodeError }}</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="tab === 'Create an Account'">
+        <div class="field">
+          <label class="label">First Name</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="First" #firstNameField>
+
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-24px mdi-account"></i>
+            </span>
+
+
+            <div *ngIf="firstNameError">
+              <div *ngIf="firstNameError === ''">
+                <span class="icon is-small is-right">
+                  <i class="mdi mdi-24px mdi-check-circle"></i>
+                </span>
+              </div>
+              <div *ngIf="firstNameError !== ''">
+                <span class="icon is-small is-right">
+                  <i class="mdi mdi-24px mdi-"></i>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="firstNameError">
+            <p class="help is-danger">{{ firstNameError }}</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="tab === 'Create an Account'">
+        <div class="field">
+          <label class="label">Last Name</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" type="text" placeholder="Last" #lastNameField>
+
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-24px mdi-account"></i>
+            </span>
+            <div *ngIf="lastNameError === ''">
+              <span class="icon is-small is-right">
+                <i class="mdi mdi-24px mdi-check-circle"></i>
+              </span>
+            </div>
+            <div *ngIf="lastNameError !== ''">
+              <span class="icon is-small is-right">
+                <i class="mdi mdi-24px mdi-"></i>
+              </span>
+            </div>
+
+          </div>
+          <div *ngIf="lastNameError">
+            <p class="help is-danger">{{ lastNameError }}</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="field">
+        <label class="label">Email Address</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input {{ (emailError && emailError !== '') ? 'is-danger has-text-danger':((emailError && emailError == '') ? 'is-primary has-text-primary':'has-text-dark') }}" type="email" placeholder="Email" #emailField>
+
+          <span class="icon is-small is-left">
+            <i class="mdi mdi-24px mdi-at {{ (emailError && emailError !== '') ? 'has-text-danger':((emailError && emailError == '') ? 'has-text-primary':'has-text-dark') }}"></i>
+          </span>
+
+
+          <div *ngIf="emailError">
+            <div *ngIf="emailError === ''">
+              <span class="icon is-small is-right">
+                <i class="mdi mdi-24px mdi-check-circle {{ (emailError && emailError == '') ? 'has-text-primary':'has-text-dark'}}"></i>
+              </span>
+            </div>
+            <div *ngIf="emailError !== ''">
+              <span class="icon is-small is-right {{ (emailError && emailError !== '') ? 'has-text-danger':'has-text-dark'}}">
+                <i class="mdi mdi-24px mdi-alert-circle"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div *ngIf="emailError">
+          <p class="help is-danger">{{ emailError }}</p>
+        </div>
+      </div>
+
+
+
+      <div class="field" #loginUserTextFieldPassword>
+        <label class="label">Password</label>
+        <div class="control has-icons-left has-icons-right">
+          <input class="input" type="password" placeholder="Password" #password>
+
+          <span class="icon is-small is-left">
+            <i class="mdi mdi-24px mdi-lock"></i>
+          </span>
+
+          <div *ngIf="passwordError">
+            <div *ngIf="passwordError === ''">
+              <span class="icon is-small is-right">
+                <i class="mdi mdi-24px mdi-check-circle"></i>
+              </span>
+            </div>
+            <div *ngIf="passwordError !== ''">
+              <span class="icon is-small is-right">
+                <i class="mdi mdi-24px mdi-alert-circle"></i>
+              </span>
+            </div>
+          </div>
+
+        </div>
+        <div *ngIf="passwordError">
+          <p class="help is-danger">{{ passwordError }}</p>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="tab === 'Create an Account'">
+        <div class="field">
+          <label class="label">Confirm Password</label>
+          <div class="control has-icons-left has-icons-right">
+            <input class="input" type="password" placeholder="Confirm Password" #confirmPassword>
+
+            <span class="icon is-small is-left">
+              <i class="mdi mdi-24px mdi-lock"></i>
+            </span>
+
+            <div *ngIf="confirmPasswordError">
+              <div *ngIf="confirmPasswordError === ''">
+                <span class="icon is-small is-right">
+                  <i class="mdi mdi-24px mdi-check-circle"></i>
+                </span>
+              </div>
+              <div *ngIf="confirmPasswordError !== ''">
+                <span class="icon is-small is-right">
+                  <i class="mdi mdi-24px mdi-alert-circle"></i>
+                </span>
+              </div>
+            </div>
+
+          </div>
+          <div *ngIf="confirmPasswordError">
+            <p class="help is-danger">{{ confirmPasswordError }}</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div *ngIf="showNotification()">
+        <div class="notification is-danger is-light">
+          <button class="delete" (click)="hideNotification()"></button>
+          <p>
+            {{ notificationContent }}
+          </p>
+        </div>
+      </div>
+
+
+
+
+    </section>
+    <footer class="modal-card-foot">
+      <!-- modal action buttons, etc. go here -->
+    </footer>
+  </div>
+</div>

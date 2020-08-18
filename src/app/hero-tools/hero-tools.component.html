@@ -1,0 +1,18 @@
+
+<section class="hero is-small is-dark">
+  <div class="hero-body">
+    <div class="container">
+
+      <p class="subtitle has-text-centered">
+        <strong>Created with</strong>
+      </p>
+
+      <div class="columns is-vcentered">
+        <div *ngFor="let tool of tools" class="column is-centered has-text-centered">
+          <app-icon-button [button]="tool" (click)="print()"></app-icon-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

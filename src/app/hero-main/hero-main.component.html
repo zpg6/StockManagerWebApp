@@ -1,0 +1,25 @@
+<section class="hero is-link is-fullheight">
+
+  <div class="hero-body">
+    <div class="container has-text-centered is-centered">
+      <div class="columns is-three-quarters is-vcentered">
+        <div class="column is-half">
+          <img src="assets/images/detailed_analysis.svg" class="image">
+        </div>
+        <div class="column is-half">
+
+          <p class="title is-2">Stock Manager</p>
+          <p class="subtitle is-4">By Joseph Paul & Zach Grimaldi</p>
+
+          <div *ngIf="loginButton">
+            <app-icon-button [button]="loginButton" (click)="loginButtonClicked()"></app-icon-button>
+          </div>
+
+
+          <!-- <p class="subtitle is-4 is-hidden" #welcomeMessage>Welcome, {{ login["userFirstName"] }}!</p> -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

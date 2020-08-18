@@ -1,0 +1,19 @@
+<section class="hero is-small is-dark">
+  <div class="hero-body">
+    <div class="container">
+
+      <p class="subtitle has-text-centered">
+        <strong>Repositories</strong>
+      </p>
+
+      <div class="columns is-vcentered">
+        <div *ngFor="let repo of repos" class="column is-centered has-text-centered">
+          <app-icon-button [button]="repo"></app-icon-button>
+        </div>
+      </div>
+
+      <app-copyright></app-copyright>
+
+    </div>
+  </div>
+</section>
