@@ -28,9 +28,11 @@ export class HomepageContainerComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
   updateObserver() {
+    //update all observers that data has changed
     this.messageService.sendMessage(this.appData);
   }
   ngOnInit() {
+    //update shared data of observable
     this.messageService.getMessage()
   }
 

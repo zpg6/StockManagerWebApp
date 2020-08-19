@@ -33,9 +33,11 @@ export class HeroMainComponent implements OnInit {
     this.subscription.unsubscribe();
   }
   updateObserver() {
+    //update all observers that data has changed
     this.messageService.sendMessage(this.appData);
   }
   ngOnInit() {
+    //set styling variables
     this.loginButton = new IconButtonModel()
     this.loginButton.title = 'Login'
     this.loginButton.iconSuffix = 'login-variant'

@@ -10,9 +10,12 @@ import { MessageService } from '../messaging.service';
 })
 export class AuthModalComponent implements OnInit {
 
+  //delcare variables
   appData: AppData;
   subscription = new Subscription();
   tab = 'Login'
+
+  //Declare the children of the view
   @ViewChild('modal') modal: ElementRef;
 
   @ViewChild('loginTab') loginTab: ElementRef;
@@ -33,12 +36,16 @@ export class AuthModalComponent implements OnInit {
   confirmPasswordError;
 
   notificationContent: string = '';
+
+  //set the notification
   setNotification(to: string) {
     this.notificationContent = to
   }
+  //remove the notification string
   hideNotification() {
     this.notificationContent = ''
   }
+  //check if there is a notification that needs to be shown
   showNotification(): boolean {
     return this.notificationContent !== ''
   }
@@ -57,13 +64,16 @@ export class AuthModalComponent implements OnInit {
     this.subscription.unsubscribe();
   }
   updateObserver() {
+    //update all observers that data has changed
     this.messageService.sendMessage(this.appData);
   }
 
   ngOnInit() {
+    //update shared data of observable
     this.appData = this.messageService.getMessageOnce()
   }
 
+  //toggle the login modal on 'Login' button click, or 'X' click
   toggleModalOpen() {
     if (this.appData.loginModalOpen) {
       this.modal.nativeElement.classList.toggle('is-active')
@@ -72,12 +82,17 @@ export class AuthModalComponent implements OnInit {
     this.updateObserver()
   }
 
-  toggleTab() {
+  //toggle between 'Login' and 'Create an Account' tabs in modal
+  toggleTab(from: string) {
+    //Don't want to toggle when clicking on thab that is open
+    if (from === this.tab) { return }
+    //toggle to the other tab
     this.tab = (this.tab === 'Login') ? 'Create an Account':'Login'
     this.loginTab.nativeElement.classList.toggle('is-active')
     this.createAnAccountTab.nativeElement.classList.toggle('is-active')
   }
 
+  //log the user in on success
   loginUser() {
     if (this.findErrors() == 0) {
       // perform login

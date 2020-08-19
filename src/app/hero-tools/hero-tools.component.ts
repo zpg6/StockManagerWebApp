@@ -22,6 +22,7 @@ export class HeroToolsComponent implements OnInit {
     let typescript = new IconButtonModel();
     let bulma = new IconButtonModel();
 
+    //set variables for Tools buttons
     angular.title = 'Angular'
     angular.iconSuffix = 'angular'
     angular.link = 'https://angular.io'

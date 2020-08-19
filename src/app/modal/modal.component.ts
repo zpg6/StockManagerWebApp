@@ -29,13 +29,16 @@ export class ModalComponent implements OnInit {
     this.subscription.unsubscribe();
   }
   updateObserver() {
+    //update all observers that data has changed
     this.messageService.sendMessage(this.appData);
   }
 
   ngOnInit() {
+    //update shared data of observable
     this.appData = this.messageService.getMessageOnce()
   }
 
+  //function to toggle the modal from open to closed
   toggleModalOpen() {
     if (this.appData.loginModalOpen) {
       this.modal.nativeElement.classList.toggle('is-active')

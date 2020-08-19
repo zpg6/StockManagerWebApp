@@ -21,6 +21,8 @@ export class HeroReposComponent implements OnInit {
     let iosApp = new IconButtonModel()
     let androidApp = new IconButtonModel()
 
+
+    //set variables for each repository button
     webApp.title = 'Web App'
     webApp.iconSuffix = 'angular'
     webApp.link = '#'

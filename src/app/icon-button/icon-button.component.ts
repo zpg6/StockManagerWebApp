@@ -26,6 +26,7 @@ export class IconButtonComponent implements OnInit {
     return this.getButtonSize() + this.getButtonColor() + this.getButtonStyle() + this.getClassAdditions()
   }
 
+  //function to get button color as a string
   getButtonColor() {
     if (this.button.color !== null) {
       //console.log('button color:' + this.button.color)
@@ -35,6 +36,7 @@ export class IconButtonComponent implements OnInit {
     }
   }
 
+  //function to return button style as a string
   getButtonStyle() {
     if (this.button.style !== null) {
       return ' ' + this.button.style
@@ -43,6 +45,7 @@ export class IconButtonComponent implements OnInit {
     }
   }
 
+  //function to return button size as a string
   getButtonSize() {
     if (this.button.size !== null) {
       //console.log('button size:' + this.button.size)
@@ -52,6 +55,7 @@ export class IconButtonComponent implements OnInit {
     }
   }
 
+  //function to return class additions as a string
   getClassAdditions() {
     if (this.button.classAdditions !== null) {
       return ' ' + this.button.classAdditions
@@ -62,6 +66,7 @@ export class IconButtonComponent implements OnInit {
 
 }
 
+//custom class for Icon Buttons
 export class IconButtonModel {
   title: string;
   link: string;
