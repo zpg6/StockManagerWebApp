@@ -2,6 +2,10 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../messaging.service';
+import { IconButtonModel } from '../icon-button/icon-button.component';
+import { ButtonColor } from '../button-color';
+import { ButtonSize } from '../button-size';
+import { ButtonStyle } from '../button-style';
 
 @Component({
   selector: 'app-auth-modal',
@@ -28,12 +32,14 @@ export class AuthModalComponent implements OnInit {
   @ViewChild('passwordField') passwordField: ElementRef;
   @ViewChild('confirmPasswordField') confirmPasswordField: ElementRef;
 
-  invitationCodeError;
-  firstNameError;
-  lastNameError;
-  emailError = 'sajklasJKLASKJLas';
-  passwordError;
-  confirmPasswordError;
+  invitationCodeError = null;
+  firstNameError = null;
+  lastNameError = null;
+  emailError = null;
+  passwordError = null;
+  confirmPasswordError = null;
+
+  loginButton = new IconButtonModel();
 
   notificationContent: string = '';
 
@@ -69,8 +75,14 @@ export class AuthModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    //update shared data of observable
+    //update shared data of observable and instantiate login button
     this.appData = this.messageService.getMessageOnce()
+    this.loginButton.title = 'Login'
+    this.loginButton.iconSuffix = 'login-variant'
+    this.loginButton.link = '#'
+    this.loginButton.color = ButtonColor.link
+    this.loginButton.size = ButtonSize.medium
+    this.loginButton.clickFunction = this.loginButtonClicked
   }
 
   //toggle the login modal on 'Login' button click, or 'X' click
@@ -90,6 +102,12 @@ export class AuthModalComponent implements OnInit {
     this.tab = (this.tab === 'Login') ? 'Create an Account':'Login'
     this.loginTab.nativeElement.classList.toggle('is-active')
     this.createAnAccountTab.nativeElement.classList.toggle('is-active')
+    this.firstNameError = null
+    this.lastNameError = null
+    this.emailError = null
+    this.invitationCodeError = null
+    this.confirmPasswordError = null
+    this.passwordError = null
   }
 
   //log the user in on success
@@ -107,6 +125,183 @@ export class AuthModalComponent implements OnInit {
 
 
     return count
+  }
+
+  validateEmail(val: string): string{
+    var resultingString = ''
+    val = val.toLowerCase()
+
+    if(val.length === 0){
+      return 'Email cannot be blank'
+    }
+
+    const regex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+    const found = val.match(regex);
+
+    if(found === null){
+      return 'Invalid email format'
+    }
+
+    return resultingString
+  }
+
+  validateStrongPassword(val: string): string{
+    var resultingString = ''
+
+    var lowercaseRegex = new RegExp('^(?=.*[a-z])');
+    var uppercaseRegex = new RegExp('^(?=.*[A-Z])');
+    var numberRegex = new RegExp('(?=.*[0-9])');
+    var specialCharRegex = new RegExp('(?=.*[!@#\$%\^&\*])')
+    var eightCharMinRegex = new RegExp('(?=.{8,})')
+
+    if (!lowercaseRegex.test(val)){
+      resultingString = resultingString + 'at least one lowercase letter,\n'
+    }
+    if (!uppercaseRegex.test(val)){
+      resultingString = resultingString + 'at least one uppercase letter,\n'
+    }
+    if (!numberRegex.test(val)){
+      resultingString = resultingString + 'at least one number,\n'
+    }
+    if (!specialCharRegex.test(val)){
+      resultingString = resultingString + 'at least special character,\n'
+    }
+    if (!eightCharMinRegex.test(val)){
+      resultingString = resultingString + 'at least 8 characters,\n'
+    }
+
+    if(resultingString.length != 0) {
+      resultingString = 'Password must contain:\n' + resultingString
+      resultingString = resultingString.substring(0, resultingString.length-2)
+    }
+
+    return resultingString
+  }
+
+  validateInvitationCode(val: string): string {
+      var resultingString = ''
+
+      if(val.length === 0){
+          resultingString = 'Please enter an invitation code.'
+      }
+
+      return resultingString
+  }
+
+  confirmPassword(first: string, second: string): string {
+    var resultingString = ''
+
+    if(first.length === 0) {
+      return 'Cannot be empty.'
+    }
+
+
+    if(first !== second){
+      resultingString = 'Passwords do not match.'
+    }
+
+    return resultingString
+  }
+
+  sanitizeName(name: string): string {
+    var resultingName = name
+
+    if (resultingName.length !== 0) {
+      resultingName = resultingName.trim()
+
+      resultingName = resultingName[0].toUpperCase() + resultingName.slice(1); 
+  
+      var i = 0;
+      while(i < resultingName.length - 1) {
+        if(resultingName[i] === ' ' || resultingName[i] === '-' || resultingName[i] === "'"){
+          var charToBeUppercased = resultingName[i+1]
+          resultingName = resultingName.substring(0, i+1) + charToBeUppercased.toUpperCase() + resultingName.substring(i+2, resultingName.length)
+        }
+        i++
+      }
+  
+    }
+
+    return resultingName
+  }
+
+  validateFields(): Boolean {
+    
+    var result = true
+
+    this.emailError = this.validateEmail(this.emailField.nativeElement.value)
+    if (this.emailError.length != 0){
+      result = false
+    }
+
+    if (this.tab === 'Create an Account'){
+      this.passwordError = this.validateStrongPassword(this.passwordField.nativeElement.value)
+      if (this.passwordError.length != 0){
+        result = false
+      }
+    } else {
+      if (this.passwordField.nativeElement.value.length === 0){
+        this.passwordError = 'Password cannot be empty.'
+      }
+    }
+
+    this.confirmPasswordError = this.confirmPassword(this.confirmPasswordField.nativeElement.value, this.passwordField.nativeElement.value)
+    if (this.confirmPasswordError != 0) {
+      result = false
+    }
+
+    this.invitationCodeError = this.validateInvitationCode(this.invitationCodeField.nativeElement.value)
+    if (this.invitationCodeError.length != 0){
+      result = false
+    }
+
+    this.firstNameField.nativeElement.value = this.sanitizeName(this.firstNameField.nativeElement.value)
+    if(this.firstNameField.nativeElement.value.length === 0) {
+      this.firstNameError = 'First name cannot be empty.'
+      result = false
+    } else {
+      this.firstNameError = ''
+    }
+
+    this.lastNameField.nativeElement.value = this.sanitizeName(this.lastNameField.nativeElement.value)
+    if(this.lastNameField.nativeElement.value.length === 0) {
+      this.lastNameError = 'Last name cannot be empty.'
+      result = false
+    } else {
+      this.lastNameError = ''
+    }
+
+    return result
+  }
+
+  getFieldClass(error: String){
+
+    if (error === null){
+      return 'is-dark has-text-dark'
+    } else if (error === ''){
+      return 'is-primary has-text-primary'
+    } else {
+      return 'is-danger has-text-danger'
+    }
+  }
+
+  getFieldIcon(error: String){
+
+    if (error === null){
+      return ''
+    } else if (error === ''){
+      return 'mdi mdi-24px mdi-check-circle'
+    } else {
+      return 'mdi mdi-24px mdi-alert-circle'
+    }
+  }
+
+  loginButtonClicked(){
+    if(this.validateFields()){
+      this.appData.loginModalOpen = true
+      this.appData.firstName = this.firstNameField.nativeElement.value
+      this.updateObserver()
+    }
   }
 
 

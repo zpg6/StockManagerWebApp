@@ -26,26 +26,17 @@
           <label class="label">Invitation Code</label>
           <div class="control has-icons-left has-icons-right">
 
-            <input class="input" type="text" placeholder="Invitation Code" #invitationCodeField>
+            <input class="input {{ getFieldClass(invitationCodeError) }}" type="text" placeholder="Invitation Code" #invitationCodeField>
 
             <span class="icon is-small is-left">
-              <i class="mdi mdi-24px mdi-email"></i>
+              <i class="mdi mdi-24px mdi-email {{ getFieldClass(invitationCodeError) }}"></i>
             </span>
 
 
             <!-- Once invitation code error check occurs, update view with red variations to signal error or green variations to signal success -->
-            <div *ngIf="invitationCodeError"> 
-              <div *ngIf="invitationCodeError === ''">
-                <span class="icon is-small is-right">
-                  <i class="mdi mdi-24px mdi-check-circle"></i>
-                </span>
-              </div>
-              <div *ngIf="invitationCodeError !== ''">
-                <span class="icon is-small is-right">
-                  <i class="mdi mdi-24px mdi-alert-circle"></i>
-                </span>
-              </div>
-            </div>
+            <span class="icon is-small is-right">
+              <i class="{{ getFieldIcon(invitationCodeError) }} {{ getFieldClass(invitationCodeError) }}"></i>
+            </span>
 
           </div>
           <div *ngIf="invitationCodeError">
@@ -61,26 +52,17 @@
         <div class="field">
           <label class="label">First Name</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" placeholder="First" #firstNameField>
+            <input class="input {{ getFieldClass(firstNameError) }}" type="text" placeholder="First" #firstNameField>
 
             <span class="icon is-small is-left">
-              <i class="mdi mdi-24px mdi-account"></i>
+              <i class="mdi mdi-24px mdi-account {{ getFieldClass(firstNameError) }}"></i>
             </span>
 
 
             <!-- Once first name error check occurs, update view with red variations to signal error or green variations to signal success -->
-            <div *ngIf="firstNameError">
-              <div *ngIf="firstNameError === ''">
-                <span class="icon is-small is-right">
-                  <i class="mdi mdi-24px mdi-check-circle"></i>
-                </span>
-              </div>
-              <div *ngIf="firstNameError !== ''">
-                <span class="icon is-small is-right">
-                  <i class="mdi mdi-24px mdi-"></i>
-                </span>
-              </div>
-            </div>
+            <span class="icon is-small is-right">
+              <i class="{{ getFieldIcon(firstNameError) }} {{ getFieldClass(firstNameError) }}"></i>
+            </span>
 
           </div>
           <div *ngIf="firstNameError">
@@ -96,23 +78,16 @@
         <div class="field">
           <label class="label">Last Name</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="text" placeholder="Last" #lastNameField>
+            <input class="input {{ getFieldClass(lastNameError) }}" type="text" placeholder="Last" #lastNameField>
 
             <span class="icon is-small is-left">
-              <i class="mdi mdi-24px mdi-account"></i>
+              <i class="mdi mdi-24px mdi-account {{ getFieldClass(lastNameError) }}"></i>
             </span>
 
             <!-- Once last name error check occurs, update view with red variations to signal error or green variations to signal success -->
-            <div *ngIf="lastNameError === ''">
-              <span class="icon is-small is-right">
-                <i class="mdi mdi-24px mdi-check-circle"></i>
-              </span>
-            </div>
-            <div *ngIf="lastNameError !== ''">
-              <span class="icon is-small is-right">
-                <i class="mdi mdi-24px mdi-"></i>
-              </span>
-            </div>
+            <span class="icon is-small is-right">
+              <i class="{{ getFieldIcon(lastNameError) }} {{ getFieldClass(lastNameError) }}"></i>
+            </span>
 
           </div>
           <div *ngIf="lastNameError">
@@ -127,26 +102,17 @@
       <div class="field">
         <label class="label">Email Address</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input {{ (emailError && emailError !== '') ? 'is-danger has-text-danger':((emailError && emailError == '') ? 'is-primary has-text-primary':'has-text-dark') }}" type="email" placeholder="Email" #emailField>
+          <input class="input {{ getFieldClass(emailError) }}" type="email" placeholder="Email" #emailField>
 
           <span class="icon is-small is-left">
-            <i class="mdi mdi-24px mdi-at {{ (emailError && emailError !== '') ? 'has-text-danger':((emailError && emailError == '') ? 'has-text-primary':'has-text-dark') }}"></i>
+            <i class="mdi mdi-24px mdi-at {{ getFieldClass(emailError) }}"></i>
           </span>
 
 
           <!-- Once email error check occurs, update view with red variations to signal error or green variations to signal success -->
-          <div *ngIf="emailError">
-            <div *ngIf="emailError === ''">
-              <span class="icon is-small is-right">
-                <i class="mdi mdi-24px mdi-check-circle {{ (emailError && emailError == '') ? 'has-text-primary':'has-text-dark'}}"></i>
-              </span>
-            </div>
-            <div *ngIf="emailError !== ''">
-              <span class="icon is-small is-right {{ (emailError && emailError !== '') ? 'has-text-danger':'has-text-dark'}}">
-                <i class="mdi mdi-24px mdi-alert-circle"></i>
-              </span>
-            </div>
-          </div>
+          <span class="icon is-small is-right">
+            <i class="{{ getFieldIcon(emailError) }} {{ getFieldClass(emailError) }}"></i>
+          </span>
 
         </div>
         <div *ngIf="emailError">
@@ -160,26 +126,17 @@
       <div class="field" #loginUserTextFieldPassword>
         <label class="label">Password</label>
         <div class="control has-icons-left has-icons-right">
-          <input class="input" type="password" placeholder="Password" #password>
+          <input class="input {{ getFieldClass(passwordError) }}" type="password" placeholder="Password" #passwordField>
 
           <span class="icon is-small is-left">
-            <i class="mdi mdi-24px mdi-lock"></i>
+            <i class="mdi mdi-24px mdi-lock {{ getFieldClass(passwordError) }}"></i>
           </span>
 
 
           <!-- Once email error check occurs, update view with green variations to signal success or red variations to signal error and a list of requirements for the password -->
-          <div *ngIf="passwordError">
-            <div *ngIf="passwordError === ''">
-              <span class="icon is-small is-right">
-                <i class="mdi mdi-24px mdi-check-circle"></i>
-              </span>
-            </div>
-            <div *ngIf="passwordError !== ''">
-              <span class="icon is-small is-right">
-                <i class="mdi mdi-24px mdi-alert-circle"></i>
-              </span>
-            </div>
-          </div>
+          <span class="icon is-small is-right">
+            <i class="{{ getFieldIcon(passwordError) }} {{ getFieldClass(passwordError) }}"></i>
+          </span>
 
         </div>
         <div *ngIf="passwordError">
@@ -194,25 +151,16 @@
         <div class="field">
           <label class="label">Confirm Password</label>
           <div class="control has-icons-left has-icons-right">
-            <input class="input" type="password" placeholder="Confirm Password" #confirmPassword>
+            <input class="input {{ getFieldClass(confirmPasswordError) }}" type="password" placeholder="Confirm Password" #confirmPasswordField>
 
             <span class="icon is-small is-left">
-              <i class="mdi mdi-24px mdi-lock"></i>
+              <i class="mdi mdi-24px mdi-lock {{ getFieldClass(confirmPasswordError) }}"></i>
             </span>
 
             <!-- Once confirm password error check occurs, update view with red variations (and string detailing passwords must match) to signal error or green variations to signal success -->
-            <div *ngIf="confirmPasswordError">
-              <div *ngIf="confirmPasswordError === ''">
-                <span class="icon is-small is-right">
-                  <i class="mdi mdi-24px mdi-check-circle"></i>
-                </span>
-              </div>
-              <div *ngIf="confirmPasswordError !== ''">
-                <span class="icon is-small is-right">
-                  <i class="mdi mdi-24px mdi-alert-circle"></i>
-                </span>
-              </div>
-            </div>
+            <span class="icon is-small is-right">
+              <i class="{{ getFieldIcon(confirmPasswordError) }} {{ getFieldClass(confirmPasswordError) }}"></i>
+            </span>
 
           </div>
           <div *ngIf="confirmPasswordError">
@@ -237,7 +185,10 @@
 
     </section>
     <footer class="modal-card-foot">
+      
       <!-- modal action buttons, etc. go here -->
+      <app-icon-button [button]="loginButton" (click)="loginButtonClicked()"></app-icon-button>
+
     </footer>
   </div>
 </div>
