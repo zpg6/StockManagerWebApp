@@ -2,16 +2,17 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef }
 import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../messaging.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IconButtonModel } from '../icon-button/icon-button.component';
 import { ButtonColor } from '../button-color';
 import { ButtonSize } from '../button-size';
-import { ButtonStyle } from '../button-style';
 
 @Component({
   selector: 'app-auth-modal',
   templateUrl: './auth-modal.component.html',
   styleUrls: ['./auth-modal.component.css']
 })
+
 export class AuthModalComponent implements OnInit {
 
   //delcare variables
@@ -56,7 +57,7 @@ export class AuthModalComponent implements OnInit {
     return this.notificationContent !== ''
   }
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private http: HttpClient) {
       // subscribe to home component messages
       this.subscription = new Subscription()
       this.subscription.add(this.messageService.getMessage().subscribe(message => {
@@ -242,33 +243,43 @@ export class AuthModalComponent implements OnInit {
     } else {
       if (this.passwordField.nativeElement.value.length === 0){
         this.passwordError = 'Password cannot be empty.'
+      } else {
+        this.passwordError = ''
       }
     }
 
-    this.confirmPasswordError = this.confirmPassword(this.confirmPasswordField.nativeElement.value, this.passwordField.nativeElement.value)
-    if (this.confirmPasswordError != 0) {
-      result = false
+    if (this.tab === 'Create an Account'){
+      this.confirmPasswordError = this.confirmPassword(this.confirmPasswordField.nativeElement.value, this.passwordField.nativeElement.value)
+      if (this.confirmPasswordError != 0) {
+        result = false
+      }
     }
 
-    this.invitationCodeError = this.validateInvitationCode(this.invitationCodeField.nativeElement.value)
-    if (this.invitationCodeError.length != 0){
-      result = false
+    if (this.tab === 'Create an Account') {
+      this.invitationCodeError = this.validateInvitationCode(this.invitationCodeField.nativeElement.value)
+      if (this.invitationCodeError.length != 0){
+        result = false
+      }
     }
 
-    this.firstNameField.nativeElement.value = this.sanitizeName(this.firstNameField.nativeElement.value)
-    if(this.firstNameField.nativeElement.value.length === 0) {
-      this.firstNameError = 'First name cannot be empty.'
-      result = false
-    } else {
-      this.firstNameError = ''
+    if (this.tab === 'Create an Account') {
+      this.firstNameField.nativeElement.value = this.sanitizeName(this.firstNameField.nativeElement.value)
+      if(this.firstNameField.nativeElement.value.length === 0) {
+        this.firstNameError = 'First name cannot be empty.'
+        result = false
+      } else {
+        this.firstNameError = ''
+      }
     }
 
-    this.lastNameField.nativeElement.value = this.sanitizeName(this.lastNameField.nativeElement.value)
-    if(this.lastNameField.nativeElement.value.length === 0) {
-      this.lastNameError = 'Last name cannot be empty.'
-      result = false
-    } else {
-      this.lastNameError = ''
+    if (this.tab === 'Create an Account') {
+      this.lastNameField.nativeElement.value = this.sanitizeName(this.lastNameField.nativeElement.value)
+      if(this.lastNameField.nativeElement.value.length === 0) {
+        this.lastNameError = 'Last name cannot be empty.'
+        result = false
+      } else {
+        this.lastNameError = ''
+      }
     }
 
     return result
@@ -299,9 +310,17 @@ export class AuthModalComponent implements OnInit {
   loginButtonClicked(){
     if(this.validateFields()){
       this.appData.loginModalOpen = true
-      this.appData.firstName = this.firstNameField.nativeElement.value
-      this.updateObserver()
+      this.login(this.emailField.nativeElement.value, this.passwordField.nativeElement.value)
+      //this.updateObserver()
     }
+  }
+
+  login(email: String, password: String) {
+    const body={email: email, password: password}
+    const url = 'https://api.stockmanager.tech/authenticate'
+    this.http.post(url, body).subscribe((response) => {
+      console.log(response)
+    })
   }
 
 

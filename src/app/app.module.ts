@@ -12,6 +12,7 @@ import { IconButtonComponent } from './icon-button/icon-button.component';
 import { CopyrightComponent } from './copyright/copyright.component';
 import { MessageService } from './messaging.service';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthModalComponent } from './auth-modal/auth-modal.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]
