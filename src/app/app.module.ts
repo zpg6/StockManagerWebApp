@@ -13,6 +13,7 @@ import { CopyrightComponent } from './copyright/copyright.component';
 import { MessageService } from './messaging.service';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     ModalComponent,
     IconButtonComponent,
     CopyrightComponent,
-    AuthModalComponent
+    AuthModalComponent,
+    DashboardContainerComponent
   ],
   imports: [
     BrowserModule,

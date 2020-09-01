@@ -210,8 +210,8 @@ export class AuthModalComponent implements OnInit {
     if (resultingName.length !== 0) {
       resultingName = resultingName.trim()
 
-      resultingName = resultingName[0].toUpperCase() + resultingName.slice(1); 
-  
+      resultingName = resultingName[0].toUpperCase() + resultingName.slice(1);
+
       var i = 0;
       while(i < resultingName.length - 1) {
         if(resultingName[i] === ' ' || resultingName[i] === '-' || resultingName[i] === "'"){
@@ -220,14 +220,14 @@ export class AuthModalComponent implements OnInit {
         }
         i++
       }
-  
+
     }
 
     return resultingName
   }
 
   validateFields(): Boolean {
-    
+
     var result = true
 
     this.emailError = this.validateEmail(this.emailField.nativeElement.value)
@@ -318,9 +318,9 @@ export class AuthModalComponent implements OnInit {
   login(email: String, password: String) {
     const body={email: email, password: password}
     const url = 'https://api.stockmanager.tech/authenticate'
-    this.http.post(url, body).subscribe((response) => {
+    this.http.post(url, body).toPromise().then((response) => {
       console.log(response)
-    })
+    }).catch(err => console.log(err))
   }
 
 

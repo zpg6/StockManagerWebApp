@@ -1,13 +1,24 @@
 <!-- HTML code for the homepage container -->
 
-<app-hero-main></app-hero-main>
 
-<div *ngIf="appData && appData.isAuthenticated">
-  <app-hero-tools></app-hero-tools>
-  <app-hero-repos></app-hero-repos>
-</div>
 
-<div *ngIf="appData && appData.loginModalOpen">
-  <app-auth-modal></app-auth-modal>
-</div>
 
+<div *ngIf="!appData || !appData.isAuthenticated; then unauthenticated"></div>
+<div *ngIf="appData &&  appData.isAuthenticated; then authenticated"></div>
+
+<ng-template #authenticated>
+
+</ng-template>
+
+<ng-template #unauthenticated>
+  <app-hero-main></app-hero-main>
+
+  <div *ngIf="appData && appData.isAuthenticated">
+    <app-hero-tools></app-hero-tools>
+    <app-hero-repos></app-hero-repos>
+  </div>
+
+  <div *ngIf="appData && appData.loginModalOpen">
+    <app-auth-modal></app-auth-modal>
+  </div>
+</ng-template>
