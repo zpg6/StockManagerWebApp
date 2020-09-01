@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MessageService } from '../app/messaging.service'
 import { Subscription } from 'rxjs';
 import { AppData } from './app-data';
+import { UserModel } from './user-model';
+import { UserRole } from './user-role';
 import { HomepageContainerComponent } from './homepage-container/homepage-container.component';
 
 @Component({
@@ -33,10 +35,6 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   updateObserver() {
     this.messageService.sendMessage(this.appData);
-  }
-  buttonClick() {
-    this.appData.loginModalOpen = true
-    this.updateObserver()
   }
 
 }

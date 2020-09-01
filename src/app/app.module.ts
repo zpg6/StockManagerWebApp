@@ -16,6 +16,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { LottieCircleGrowComponent } from './lottie-circle-grow/lottie-circle-grow.component';
+import { AppMenuComponent } from './app-menu/app-menu.component';
+import { SearchPageContainerComponent } from './search-page-container/search-page-container.component';
+import { SearchPageHowToTextComponent } from './search-page-how-to-text/search-page-how-to-text.component';
+import { NumberPadComponent } from './number-pad/number-pad.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { LottieCircleGrowComponent } from './lottie-circle-grow/lottie-circle-gr
     CopyrightComponent,
     AuthModalComponent,
     DashboardContainerComponent,
-    LottieCircleGrowComponent
+    LottieCircleGrowComponent,
+    AppMenuComponent,
+    SearchPageContainerComponent,
+    SearchPageHowToTextComponent,
+    NumberPadComponent
   ],
   imports: [
     BrowserModule,

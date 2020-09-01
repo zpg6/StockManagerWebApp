@@ -6,6 +6,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IconButtonModel } from '../icon-button/icon-button.component';
 import { ButtonColor } from '../button-color';
 import { ButtonSize } from '../button-size';
+import { UserModel } from '../user-model';
+import { NavPage } from '../nav-page.enum';
 
 @Component({
   selector: 'app-auth-modal',
@@ -15,7 +17,7 @@ import { ButtonSize } from '../button-size';
 
 export class AuthModalComponent implements OnInit {
 
-  //delcare variables
+  //declare variables
   appData: AppData;
   subscription = new Subscription();
   tab = 'Login'
@@ -88,10 +90,13 @@ export class AuthModalComponent implements OnInit {
 
   //toggle the login modal on 'Login' button click, or 'X' click
   toggleModalOpen() {
-    if (this.appData.loginModalOpen) {
+    if (this.appData.page == NavPage.loginModal) {
       this.modal.nativeElement.classList.toggle('is-active')
+      this.appData.page = NavPage.landing
+    } else {
+      this.modal.nativeElement.classList.toggle('is-active')
+      this.appData.page = NavPage.loginModal
     }
-    this.appData.loginModalOpen = !this.appData.loginModalOpen
     this.updateObserver()
   }
 
@@ -309,19 +314,28 @@ export class AuthModalComponent implements OnInit {
 
   loginButtonClicked(){
     if(this.validateFields()){
-      this.appData.loginModalOpen = true
       this.login(this.emailField.nativeElement.value, this.passwordField.nativeElement.value)
       //this.updateObserver()
     }
   }
 
-  login(email: String, password: String) {
-    const body={email: email, password: password}
-    const url = 'https://api.stockmanager.tech/testauthenticate'
-    this.http.post(url, body).toPromise().then((response) => {
-      console.log(response)
+  login(email: string, password: string) {
+    const body= new UserModel();
+    body.email = email;
+    body.password = password;
+    const url = this.appData.apiRootURL + '/test-authenticate'
+    this.http.post<UserModel>(url, body).toPromise().then((response) => {
+      console.log('response.userID = ' + response.userID);
+      if (response != null && response.userID != null && response.userID.length > 0) {
+        console.log('response.userID = ' + response.userID);
+        this.appData.user = response;
+        this.appData.isAuthenticated = true;
+        this.appData.page = NavPage.dashboard;
+        this.updateObserver();
+      } else {
+        console.log('response could not be processed');
+      }
     }).catch(err => console.log(err))
   }
-
 
 }

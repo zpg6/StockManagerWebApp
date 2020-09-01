@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { MessageService } from '../messaging.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
-import { NavPage } from '../nav-page.enum';
+import { MessageService } from '../messaging.service';
+import { UserRole } from '../user-role';
 
 @Component({
-  selector: 'app-homepage-container',
-  templateUrl: './homepage-container.component.html',
-  styleUrls: ['./homepage-container.component.css']
+  selector: 'app-search-page-container',
+  templateUrl: './search-page-container.component.html',
+  styleUrls: ['./search-page-container.component.css']
 })
-export class HomepageContainerComponent implements OnInit, OnDestroy {
+export class SearchPageContainerComponent implements OnInit, OnDestroy {
 
   appData: AppData;
   subscription = new Subscription();
@@ -19,9 +19,9 @@ export class HomepageContainerComponent implements OnInit, OnDestroy {
       this.subscription = new Subscription()
       this.subscription.add(this.messageService.getMessage().subscribe(message => {
         this.appData = message;
-        console.log('Subscription updated @ HomepageContainerComponent')
+        console.log('Subscription updated @ SearchPageContainerComponent')
       }));
-      console.log('Subscription created @ HomepageContainerComponent')
+      console.log('Subscription created @ SearchPageContainerComponents')
   }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
@@ -36,12 +36,12 @@ export class HomepageContainerComponent implements OnInit, OnDestroy {
     this.messageService.getMessage()
   }
 
-  login() {
-    this.appData.page = NavPage.loginModal
-    this.updateObserver()
+  isAdmin(): boolean {
+    return this.appData.user.userRole == UserRole.admin;
   }
 
-  loginModalOpen(): boolean {
-    return this.appData.page == NavPage.loginModal;
+  isDeveloper(): boolean {
+    return this.appData.user.userRole == UserRole.developer;
   }
+
 }

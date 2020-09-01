@@ -1,13 +1,10 @@
 <!-- HTML code for the homepage container -->
 
-
-
-
 <div *ngIf="!appData || !appData.isAuthenticated; then unauthenticated"></div>
 <div *ngIf="appData &&  appData.isAuthenticated; then authenticated"></div>
 
 <ng-template #authenticated>
-
+  <app-dashboard-container></app-dashboard-container>
 </ng-template>
 
 <ng-template #unauthenticated>
@@ -18,7 +15,7 @@
     <app-hero-repos></app-hero-repos>
   </div>
 
-  <div *ngIf="appData && appData.loginModalOpen">
+  <div *ngIf="loginModalOpen()">
     <app-auth-modal></app-auth-modal>
   </div>
 </ng-template>

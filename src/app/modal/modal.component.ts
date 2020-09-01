@@ -38,13 +38,13 @@ export class ModalComponent implements OnInit {
     this.appData = this.messageService.getMessageOnce()
   }
 
-  //function to toggle the modal from open to closed
-  toggleModalOpen() {
-    if (this.appData.loginModalOpen) {
-      this.modal.nativeElement.classList.toggle('is-active')
-    }
-    this.appData.loginModalOpen = !this.appData.loginModalOpen
-    this.updateObserver()
-  }
+  // //function to toggle the modal from open to closed
+  // toggleModalOpen() {
+  //   if (this.appData.loginModalOpen) {
+  //     this.modal.nativeElement.classList.toggle('is-active')
+  //   }
+  //   this.appData.loginModalOpen = !this.appData.loginModalOpen
+  //   this.updateObserver()
+  // }
 
 }

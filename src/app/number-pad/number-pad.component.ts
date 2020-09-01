@@ -1,15 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { MessageService } from '../messaging.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
-import { NavPage } from '../nav-page.enum';
+import { MessageService } from '../messaging.service';
 
 @Component({
-  selector: 'app-homepage-container',
-  templateUrl: './homepage-container.component.html',
-  styleUrls: ['./homepage-container.component.css']
+  selector: 'app-number-pad',
+  templateUrl: './number-pad.component.html',
+  styleUrls: ['./number-pad.component.css']
 })
-export class HomepageContainerComponent implements OnInit, OnDestroy {
+export class NumberPadComponent implements OnInit, OnDestroy {
 
   appData: AppData;
   subscription = new Subscription();
@@ -19,9 +18,9 @@ export class HomepageContainerComponent implements OnInit, OnDestroy {
       this.subscription = new Subscription()
       this.subscription.add(this.messageService.getMessage().subscribe(message => {
         this.appData = message;
-        console.log('Subscription updated @ HomepageContainerComponent')
+        console.log('Subscription updated @ NumberPadComponent')
       }));
-      console.log('Subscription created @ HomepageContainerComponent')
+      console.log('Subscription created @ NumberPadComponent')
   }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
@@ -34,14 +33,5 @@ export class HomepageContainerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //update shared data of observable
     this.messageService.getMessage()
-  }
-
-  login() {
-    this.appData.page = NavPage.loginModal
-    this.updateObserver()
-  }
-
-  loginModalOpen(): boolean {
-    return this.appData.page == NavPage.loginModal;
   }
 }

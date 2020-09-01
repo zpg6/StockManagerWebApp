@@ -1,32 +1,26 @@
+import { UserModel } from './user-model';
+import { NavPage } from './nav-page.enum';
+
 export class AppData {
 
   title: string = 'Stock Manager';
+  apiRootURL: string = 'https://d6c62a0cc134.ngrok.io';
 
-  userID: string = '';
-  firstName: string = '';
-  lastName: string = '';
-  email: string = '';
-  storeID: string = '';
-  companyID: string = '';
-
+  user: UserModel = new UserModel();
   isAuthenticated: boolean = false;
   currentIPAddress: string = '';
-  userLastLogin: Date = null;
+  loginInProgress: boolean = true;
+  createAccountProgress: boolean = true;
 
-  loginModalOpen: boolean = false;
+  page: NavPage = NavPage.landing;
 
   constructor() {
     this.title = 'Stock Manager'
-    this.userID = ''
-    this.firstName = ''
-    this.lastName = ''
-    this.email = ''
-    this.storeID = ''
-    this.companyID = ''
+    this.apiRootURL = 'https://d6c62a0cc134.ngrok.io'
+    this.user = new UserModel();
     this.isAuthenticated = false
     this.currentIPAddress = ''
-    this.userLastLogin = null
-    this.loginModalOpen = false
+    this.page = NavPage.landing
   }
 
 }

@@ -1,0 +1,39 @@
+<!-- left panel -->
+<div class="dashboard-panel is-medium has-thick-padding has-background-grey-lighter is-hidden-mobile" *ngIf="isAdmin() || isDeveloper()">
+  <header class="dashboard-panel-header">
+    <div class="has-text-centered">
+      <img src="https://bulma.io/images/bulma-logo.png  " width="50%">
+    </div>
+  </header>
+
+  <div class="dashboard-panel-content">
+
+    <aside class="menu has-text-white">
+
+      <ul class="menu-list">
+        <li><a class="is-active">Dashboard</a></li>
+      </ul>
+
+
+      <p class="menu-label" *ngIf="isAdmin()">
+        Administrators
+      </p>
+
+      <ul class="menu-list" *ngIf="isAdmin()">
+        <li><a>Stores</a></li>
+        <li><a>Accounts</a></li>
+      </ul>
+
+
+      <p class="menu-label" *ngIf="isAdmin() || isDeveloper()">
+        Developers
+      </p>
+
+      <ul class="menu-list" *ngIf="isAdmin() || isDeveloper()">
+        <li><a>API Keys</a></li>
+        <li><a>API Reference</a></li>
+      </ul>
+
+    </aside>
+  </div>
+</div>

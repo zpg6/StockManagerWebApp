@@ -6,6 +6,7 @@ import { ButtonStyle } from '../button-style';
 import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../messaging.service';
+import { NavPage } from '../nav-page.enum';
 
 @Component({
   selector: 'app-hero-main',
@@ -49,7 +50,7 @@ export class HeroMainComponent implements OnInit {
     this.loginButton.clickFunction = this.loginButtonClicked
   }
   loginButtonClicked(){
-    this.appData.loginModalOpen = true
+    this.appData.page = NavPage.loginModal
     this.updateObserver()
   }
 }
