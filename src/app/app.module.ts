@@ -14,6 +14,8 @@ import { MessageService } from './messaging.service';
 import { AuthModalComponent } from './auth-modal/auth-modal.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboardContainerComponent } from './dashboard-container/dashboard-container.component';
+import { LottieAnimationViewModule } from 'ng-lottie';
+import { LottieCircleGrowComponent } from './lottie-circle-grow/lottie-circle-grow.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import { DashboardContainerComponent } from './dashboard-container/dashboard-con
     IconButtonComponent,
     CopyrightComponent,
     AuthModalComponent,
-    DashboardContainerComponent
+    DashboardContainerComponent,
+    LottieCircleGrowComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    LottieAnimationViewModule
   ],
   providers: [MessageService],
   bootstrap: [AppComponent]

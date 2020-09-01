@@ -317,7 +317,7 @@ export class AuthModalComponent implements OnInit {
 
   login(email: String, password: String) {
     const body={email: email, password: password}
-    const url = 'https://api.stockmanager.tech/authenticate'
+    const url = 'https://api.stockmanager.tech/testauthenticate'
     this.http.post(url, body).toPromise().then((response) => {
       console.log(response)
     }).catch(err => console.log(err))

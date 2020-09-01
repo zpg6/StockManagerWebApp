@@ -45,6 +45,7 @@ export class HeroMainComponent implements OnInit {
     this.loginButton.color = ButtonColor.white
     this.loginButton.size = ButtonSize.large
     this.loginButton.style = ButtonStyle.outlined
+    this.loginButton.classAdditions = 'is-rounded'
     this.loginButton.clickFunction = this.loginButtonClicked
   }
   loginButtonClicked(){
