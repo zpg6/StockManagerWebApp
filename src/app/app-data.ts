@@ -14,6 +14,8 @@ export class AppData {
 
   page: NavPage = NavPage.landing;
 
+  query: string = '';
+
   constructor() {
     this.title = 'Stock Manager'
     this.apiRootURL = 'https://d6c62a0cc134.ngrok.io'
@@ -21,6 +23,7 @@ export class AppData {
     this.isAuthenticated = false
     this.currentIPAddress = ''
     this.page = NavPage.landing
+    this.query = '';
   }
 
 }

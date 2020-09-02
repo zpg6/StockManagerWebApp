@@ -317,8 +317,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   min-width: 300px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: hidden;
+  height: 100%;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
@@ -4939,16 +4939,19 @@ button.dropdown-item.is-active {
   color: #4a4a4a;
   display: block;
   padding: 0.5em 0.75em;
+  border-radius: 10px;
+  margin: 5px;
 }
 
 .menu-list a:hover {
-  background-color: whitesmoke;
-  color: #363636;
+  background-color: #7aacfd;
+  color: #fff;
 }
 
 .menu-list a.is-active {
   background-color: #3273dc;
   color: #fff;
+  font-weight: bolder;
 }
 
 .menu-list li ul {

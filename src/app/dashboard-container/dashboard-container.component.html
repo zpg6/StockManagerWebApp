@@ -4,8 +4,26 @@
 
   <!-- main section -->
   <div class="dashboard-main is-scrollable is-dark">
-    <div *ngIf="showDashboard()">
+
+    <div *ngIf="showSearch()">
       <app-search-page-container></app-search-page-container>
     </div>
+
+    <div *ngIf="showStores()">
+      <app-stores-container></app-stores-container>
+    </div>
+
+    <div *ngIf="showAccounts()">
+      <app-accounts-container></app-accounts-container>
+    </div>
+
+    <div *ngIf="showAPIKeys()">
+      <app-api-keys-container></app-api-keys-container>
+    </div>
+
+    <div *ngIf="showResults()">
+      <app-results-container></app-results-container>
+    </div>
+
   </div>
 </div>

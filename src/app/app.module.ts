@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageContainerComponent } from './homepage-container/homepage-container.component';
@@ -20,6 +19,10 @@ import { AppMenuComponent } from './app-menu/app-menu.component';
 import { SearchPageContainerComponent } from './search-page-container/search-page-container.component';
 import { SearchPageHowToTextComponent } from './search-page-how-to-text/search-page-how-to-text.component';
 import { NumberPadComponent } from './number-pad/number-pad.component';
+import { StoresContainerComponent } from './stores-container/stores-container.component';
+import { AccountsContainerComponent } from './accounts-container/accounts-container.component';
+import { ApiKeysContainerComponent } from './api-keys-container/api-keys-container.component';
+import { ResultsContainerComponent } from './results-container/results-container.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,11 @@ import { NumberPadComponent } from './number-pad/number-pad.component';
     AppMenuComponent,
     SearchPageContainerComponent,
     SearchPageHowToTextComponent,
-    NumberPadComponent
+    NumberPadComponent,
+    StoresContainerComponent,
+    AccountsContainerComponent,
+    ApiKeysContainerComponent,
+    ResultsContainerComponent
   ],
   imports: [
     BrowserModule,

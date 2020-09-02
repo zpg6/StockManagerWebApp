@@ -45,8 +45,23 @@ export class DashboardContainerComponent implements OnInit, OnDestroy {
     return this.appData.user.userRole == UserRole.developer;
   }
 
-  showDashboard(): boolean {
-    return this.appData.page == NavPage.dashboard;
+  showSearch(): boolean {
+    return this.appData.page == NavPage.search;
   }
 
+  showStores(): boolean {
+    return this.appData.page == NavPage.stores;
+  }
+
+  showAccounts(): boolean {
+    return this.appData.page == NavPage.accounts;
+  }
+
+  showAPIKeys(): boolean {
+    return this.appData.page == NavPage.apiKeys;
+  }
+
+  showResults(): boolean {
+    return this.appData.page == NavPage.results;
+  }
 }

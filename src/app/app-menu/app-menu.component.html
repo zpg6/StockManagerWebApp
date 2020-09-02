@@ -2,7 +2,7 @@
 <div class="dashboard-panel is-medium has-thick-padding has-background-grey-lighter is-hidden-mobile" *ngIf="isAdmin() || isDeveloper()">
   <header class="dashboard-panel-header">
     <div class="has-text-centered">
-      <img src="https://bulma.io/images/bulma-logo.png  " width="50%">
+      <img src="../../assets/images/StockManagerLogoV1.png" width="100px" height="100px" style="margin-left: 50px; margin-right: 50px;">
     </div>
   </header>
 
@@ -11,28 +11,35 @@
     <aside class="menu has-text-white">
 
       <ul class="menu-list">
-        <li><a class="is-active">Dashboard</a></li>
+        <li><a class="{{ showSearch() ? 'is-active':'' }}" (click)="toggleSearch()">Search</a></li>
+        <ul *ngIf="showResults()" style="padding-left: 15px;">
+          <li><a class="{{ showResults() ? 'is-active':'' }}">Results</a></li>
+        </ul>
       </ul>
-
+      <br>
 
       <p class="menu-label" *ngIf="isAdmin()">
         Administrators
       </p>
 
       <ul class="menu-list" *ngIf="isAdmin()">
-        <li><a>Stores</a></li>
-        <li><a>Accounts</a></li>
+        <li><a class="{{ showStores() ? 'is-active':'' }}" (click)="toggleStores()">Stores</a></li>
+        <li><a class="{{ showAccounts() ? 'is-active':'' }}" (click)="toggleAccounts()">Accounts</a></li>
       </ul>
 
-
+      <br>
       <p class="menu-label" *ngIf="isAdmin() || isDeveloper()">
         Developers
       </p>
 
       <ul class="menu-list" *ngIf="isAdmin() || isDeveloper()">
-        <li><a>API Keys</a></li>
+        <li><a class="{{ showAPIKeys() ? 'is-active':'' }}" (click)="toggleAPIKeys()">API Keys</a></li>
         <li><a>API Reference</a></li>
       </ul>
+
+      <br><br>
+
+      <app-icon-button [button]="logoutButton" (click)="logoutButtonClicked()"></app-icon-button>
 
     </aside>
   </div>

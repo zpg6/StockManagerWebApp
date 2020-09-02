@@ -1,0 +1,88 @@
+.number-pad-button {
+  width: 100px;
+  height: 100px;
+}
+
+.number-pad-button-0 {
+  background: url("../../assets/images/SM_0.png") no-repeat;
+}
+.number-pad-button-0:hover {
+  background: url("../../assets/images/SM_0_w.png") no-repeat;
+}
+
+.number-pad-button-1 {
+  background: url("../../assets/images/SM_1.png") no-repeat;
+}
+.number-pad-button-1:hover {
+  background: url("../../assets/images/SM_1_w.png") no-repeat;
+}
+
+.number-pad-button-2 {
+  background: url("../../assets/images/SM_2.png") no-repeat;
+}
+.number-pad-button-2:hover {
+  background: url("../../assets/images/SM_2_w.png") no-repeat;
+}
+
+.number-pad-button-3 {
+  background: url("../../assets/images/SM_3.png") no-repeat;
+}
+.number-pad-button-3:hover {
+  background: url("../../assets/images/SM_3_w.png") no-repeat;
+}
+
+.number-pad-button-4 {
+  background: url("../../assets/images/SM_4.png") no-repeat;
+}
+.number-pad-button-4:hover {
+  background: url("../../assets/images/SM_4_w.png") no-repeat;
+}
+
+.number-pad-button-5 {
+  background: url("../../assets/images/SM_5.png") no-repeat;
+}
+.number-pad-button-5:hover {
+  background: url("../../assets/images/SM_5_w.png") no-repeat;
+}
+
+.number-pad-button-6 {
+  background: url("../../assets/images/SM_6.png") no-repeat;
+}
+.number-pad-button-6:hover {
+  background: url("../../assets/images/SM_6_w.png") no-repeat;
+}
+
+.number-pad-button-7 {
+  background: url("../../assets/images/SM_7.png") no-repeat;
+}
+.number-pad-button-7:hover {
+  background: url("../../assets/images/SM_7_w.png") no-repeat;
+}
+
+.number-pad-button-8 {
+  background: url("../../assets/images/SM_8.png") no-repeat;
+}
+.number-pad-button-8:hover {
+  background: url("../../assets/images/SM_8_w.png") no-repeat;
+}
+
+.number-pad-button-9 {
+  background: url("../../assets/images/SM_9.png") no-repeat;
+}
+.number-pad-button-9:hover {
+  background: url("../../assets/images/SM_9_w.png") no-repeat;
+}
+
+.number-pad-button-X {
+  background: url("../../assets/images/SM_X.png") no-repeat;
+}
+.number-pad-button-X:hover {
+  background: url("../../assets/images/SM_X_w.png") no-repeat;
+}
+
+.number-pad-button-E {
+  background: url("../../assets/images/SM_E.png") no-repeat;
+}
+.number-pad-button-E:hover {
+  background: url("../../assets/images/SM_E_w.png") no-repeat;
+}

@@ -3,16 +3,22 @@ import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../messaging.service';
 import { UserRole } from '../user-role';
+import { IconButtonModel } from '../icon-button/icon-button.component';
+import { ButtonColor } from '../button-color';
+import { ButtonSize } from '../button-size';
+import { ButtonStyle } from '../button-style';
+import { NavPage } from '../nav-page.enum';
 
 @Component({
   selector: 'app-app-menu',
   templateUrl: './app-menu.component.html',
-  styleUrls: ['./app-menu.component.css']
+  styleUrls: ['./app-menu.component.css', '../../bulma-dashboard.css']
 })
 export class AppMenuComponent implements OnInit, OnDestroy {
 
   appData: AppData;
   subscription = new Subscription();
+  logoutButton = new IconButtonModel();
 
   constructor(private messageService: MessageService) {
       // subscribe to home component messages
@@ -34,6 +40,20 @@ export class AppMenuComponent implements OnInit, OnDestroy {
   ngOnInit() {
     //update shared data of observable
     this.messageService.getMessage()
+    this.logoutButton = new IconButtonModel()
+    this.logoutButton.title = 'Logout'
+    this.logoutButton.iconSuffix = 'power'
+    this.logoutButton.link = '#'
+    this.logoutButton.color = ButtonColor.dark
+    this.logoutButton.size = ButtonSize.small
+    this.logoutButton.style = ButtonStyle.outlined
+    this.logoutButton.classAdditions = 'is-rounded'
+    this.logoutButton.clickFunction = this.logoutButtonClicked
+  }
+
+  logoutButtonClicked() {
+    this.appData = new AppData();
+    this.updateObserver();
   }
 
   isAdmin(): boolean {
@@ -42,5 +62,45 @@ export class AppMenuComponent implements OnInit, OnDestroy {
 
   isDeveloper(): boolean {
     return this.appData.user.userRole == UserRole.developer;
+  }
+
+  toggleSearch() {
+    this.appData.page = NavPage.search;
+    this.updateObserver();
+  }
+
+  toggleStores() {
+    this.appData.page = NavPage.stores;
+    this.updateObserver();
+  }
+
+  toggleAccounts() {
+    this.appData.page = NavPage.accounts;
+    this.updateObserver();
+  }
+
+  toggleAPIKeys() {
+    this.appData.page = NavPage.apiKeys;
+    this.updateObserver();
+  }
+
+  showSearch(): boolean {
+    return this.appData.page == NavPage.search;
+  }
+
+  showStores(): boolean {
+    return this.appData.page == NavPage.stores;
+  }
+
+  showAccounts(): boolean {
+    return this.appData.page == NavPage.accounts;
+  }
+
+  showAPIKeys(): boolean {
+    return this.appData.page == NavPage.apiKeys;
+  }
+
+  showResults():boolean {
+    return this.appData.page == NavPage.results;
   }
 }

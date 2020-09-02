@@ -8,6 +8,7 @@ import { ButtonColor } from '../button-color';
 import { ButtonSize } from '../button-size';
 import { UserModel } from '../user-model';
 import { NavPage } from '../nav-page.enum';
+import { UserRole } from '../user-role';
 
 @Component({
   selector: 'app-auth-modal',
@@ -320,22 +321,27 @@ export class AuthModalComponent implements OnInit {
   }
 
   login(email: string, password: string) {
-    const body= new UserModel();
-    body.email = email;
-    body.password = password;
-    const url = this.appData.apiRootURL + '/test-authenticate'
-    this.http.post<UserModel>(url, body).toPromise().then((response) => {
-      console.log('response.userID = ' + response.userID);
-      if (response != null && response.userID != null && response.userID.length > 0) {
-        console.log('response.userID = ' + response.userID);
-        this.appData.user = response;
-        this.appData.isAuthenticated = true;
-        this.appData.page = NavPage.dashboard;
-        this.updateObserver();
-      } else {
-        console.log('response could not be processed');
-      }
-    }).catch(err => console.log(err))
+    // const body= new UserModel();
+    // body.email = email;
+    // body.password = password;
+    // const url = this.appData.apiRootURL + '/test-authenticate'
+    // this.http.post<UserModel>(url, body).toPromise().then((response) => {
+    //   console.log('response.userID = ' + response.userID);
+    //   if (response != null && response.userID != null && response.userID.length > 0) {
+    //     console.log('response.userID = ' + response.userID);
+    //     this.appData.user = response;
+    //     this.appData.isAuthenticated = true;
+    //     this.appData.page = NavPage.dashboard;
+    //     this.updateObserver();
+    //   } else {
+    //     console.log('response could not be processed');
+    //   }
+    // }).catch(err => console.log(err))
+
+    this.appData.isAuthenticated = true;
+    this.appData.page = NavPage.search;
+    this.appData.user.userRole = UserRole.admin;
+    this.updateObserver();
   }
 
 }

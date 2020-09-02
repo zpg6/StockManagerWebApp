@@ -1,6 +1,9 @@
 export enum NavPage {
   landing = "Landing",
   loginModal = "LoginModal",
-  dashboard = "Dashboard",
+  search = "Search",
   stores = "Stores",
+  apiKeys = "API Keys",
+  accounts = "Accounts",
+  results = "Results"
 }
