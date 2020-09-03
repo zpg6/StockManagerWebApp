@@ -1,10 +1,11 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+w/oimport { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { MessageService } from '../app/messaging.service'
 import { Subscription } from 'rxjs';
 import { AppData } from './app-data';
 import { UserModel } from './user-model';
 import { UserRole } from './user-role';
 import { HomepageContainerComponent } from './homepage-container/homepage-container.component';
+import { NavPage } from './nav-page.enum';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,21 @@ import { HomepageContainerComponent } from './homepage-container/homepage-contai
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit, OnDestroy {
+
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    if (this.appData.page === NavPage.search) {
+      console.log('KEY PRESSED!!! - ' + event.key)
+      if (event.key === 'Enter') {
+        this.appData.page = NavPage.results;
+        this.updateObserver();
+      }
+      else {
+        this.appData.query = this.appData.query + event.key;
+        this.updateObserver();
+      }
+    }
+  }
 
   appData: AppData;
   subscription = new Subscription();

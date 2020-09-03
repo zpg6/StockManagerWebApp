@@ -22,6 +22,8 @@ export class NumberPadComponent implements OnInit, OnDestroy {
         console.log('Subscription updated @ NumberPadComponent')
       }));
       console.log('Subscription created @ NumberPadComponent')
+      this.appData.query = ''
+      this.updateObserver()
   }
   ngOnDestroy() {
     // unsubscribe to ensure no memory leaks
@@ -35,8 +37,6 @@ export class NumberPadComponent implements OnInit, OnDestroy {
     //update shared data of observable
     this.messageService.getMessage()
   }
-
-  query = '';
 
   numbers = [
     [
@@ -55,16 +55,15 @@ export class NumberPadComponent implements OnInit, OnDestroy {
 
   handleClick(num: string) {
     if (num === 'X') {
-      this.query = this.query.substring(0,this.query.length - 1);
+      this.appData.query = this.appData.query.substring(0,this.appData.query.length - 1);
     }
     else if (num === 'E') {
-      this.appData.query = this.query
       this.appData.page = NavPage.results
-      this.updateObserver()
     }
     else {
-      this.query = this.query + num;
+      this.appData.query = this.appData.query + num;
     }
+    this.updateObserver()
   }
 
   mouseOver(button: string) {
