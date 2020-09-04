@@ -4,18 +4,17 @@
   <div class="hero-body">
 
     <div class="container has-text-centered">
+      <div class="columns is-centered">
+        <div class="column is-one-third">
+          <app-search-page-how-to-text style="max-width: 200px;"></app-search-page-how-to-text>
+        </div>
+        <br><br>
+      </div>
       <p class="title is-1 {{ (this.appData.query.length > 0) ? '':'search-query-lighter' }}" style="font-size: 80px;">
         {{ this.appData.query.length > 0 ? this.appData.query:'SEARCH' }}
         <button class="delete" aria-label="close" *ngIf="this.appData.query.length > 0" (click)="this.appData.query = ''; this.updateObserver()" style="margin-top: 35px; margin-left: 20px;"></button>
       </p>
       <app-number-pad style="display:inline-block;"></app-number-pad>
-      <br><br>
-      <div class="columns is-centered">
-        <div class="column is-one-third">
-          <app-search-page-how-to-text style="max-width: 200px;"></app-search-page-how-to-text>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
