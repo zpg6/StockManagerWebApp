@@ -53,6 +53,9 @@ export class NumberPadComponent implements OnInit, OnDestroy {
     ],
   ]
 
+  hover = '';
+  down = '';
+
   handleClick(num: string) {
     if (num === 'X') {
       this.appData.query = this.appData.query.substring(0,this.appData.query.length - 1);

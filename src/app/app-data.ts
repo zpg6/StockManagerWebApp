@@ -4,7 +4,7 @@ import { NavPage } from './nav-page.enum';
 export class AppData {
 
   title: string = 'Stock Manager';
-  apiRootURL: string = 'https://d6c62a0cc134.ngrok.io';
+  apiRootURL: string = 'http://localhost:9000';
 
   user: UserModel = new UserModel();
   isAuthenticated: boolean = false;
@@ -18,7 +18,7 @@ export class AppData {
 
   constructor() {
     this.title = 'Stock Manager'
-    this.apiRootURL = 'https://d6c62a0cc134.ngrok.io'
+    this.apiRootURL = 'http://localhost:9000'
     this.user = new UserModel();
     this.isAuthenticated = false
     this.currentIPAddress = ''

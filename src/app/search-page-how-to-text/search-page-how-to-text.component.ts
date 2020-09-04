@@ -10,6 +10,8 @@ export class SearchPageHowToTextComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
+  showTip = true;
 }

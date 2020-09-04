@@ -331,7 +331,7 @@ export class AuthModalComponent implements OnInit {
     //     console.log('response.userID = ' + response.userID);
     //     this.appData.user = response;
     //     this.appData.isAuthenticated = true;
-    //     this.appData.page = NavPage.dashboard;
+    //     this.appData.page = NavPage.search;
     //     this.updateObserver();
     //   } else {
     //     console.log('response could not be processed');

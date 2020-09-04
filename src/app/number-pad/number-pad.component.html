@@ -1,10 +1,14 @@
 
-<section style="max-width: 350px;">
-  <div class="tile is-ancestor" *ngFor="let array of numbers">
-    <div class="tile is-parent" *ngFor="let num of array">
-      <div class="tile is-child">
-        <img src="" class="number-pad-button number-pad-button-{{num}}" (click)="handleClick(num)">
+<section>
+  <div class="grid-container" *ngFor="let array of numbers">
+    <div *ngFor="let num of array">
+      <div>
+        <div (click)="handleClick(num)" (mouseover)="this.hover = num;" (mouseout)="this.hover = '';" (mousedown)="this.down = num;" (mouseup)="this.down = '';">
+          <img class="number-pad-button" src="../../assets/images/SM_{{ num }}{{ this.hover === num ? '_w':'' }}{{ this.down === num ? 'x2':'' }}.png">
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+

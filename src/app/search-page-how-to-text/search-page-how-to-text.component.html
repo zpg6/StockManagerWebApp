@@ -1,1 +1,7 @@
-<p>Use the number pad on the right,<br>or just your keyboard to enter<br>an item number to search for.</p>
+<article class="message" *ngIf="this.showTip">
+  <div class="message-header">
+    <p>Use the number pad, or just your keyboard search for an item.</p>
+    <button class="delete" aria-label="delete" (click)="this.showTip = false;"></button>
+  </div>
+</article>
+
