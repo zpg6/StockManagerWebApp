@@ -20,12 +20,14 @@ export class AppComponent implements OnInit, OnDestroy {
       console.log('KEY PRESSED!!! - ' + event.key)
       if (event.key === 'Enter') {
         this.appData.page = NavPage.results;
-        this.updateObserver();
+      }
+      else if (event.key === 'Backspace') {
+        this.appData.query = this.appData.query.substring(0,this.appData.query.length - 1);
       }
       else {
         this.appData.query = this.appData.query + event.key;
-        this.updateObserver();
       }
+      this.updateObserver();
     }
   }
 
