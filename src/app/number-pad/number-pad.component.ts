@@ -61,7 +61,9 @@ export class NumberPadComponent implements OnInit, OnDestroy {
       this.appData.query = this.appData.query.substring(0,this.appData.query.length - 1);
     }
     else if (num === 'E') {
-      this.appData.page = NavPage.results
+      if (this.appData.query.length > 0) {
+        this.appData.page = NavPage.results;
+      }
     }
     else {
       this.appData.query = this.appData.query + num;
