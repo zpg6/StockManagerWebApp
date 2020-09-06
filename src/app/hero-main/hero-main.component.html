@@ -4,30 +4,17 @@
 
   <div class="hero-body">
     <div class="container has-text-centered">
-      <div class="columns is-half is-centered is-vcentered">
-        <div class="column is-5">
-          <div class="hover-color">
-            <figure>
-              <img src="assets/images/StockManagerLogoV1.png" width="300px" height="300px">
-            </figure>
-          </div>
-        </div>
-        <div class="column is-1 is-hidden-mobile">
-          <img src="assets/images/divider.png">
-        </div>
-        <div class="column is-5">
 
-          <p class="title is-2">{{ appData.title }}</p>
-
-          <div *ngIf="loginButton">
-            <app-icon-button [button]="loginButton" (click)="loginButtonClicked()"></app-icon-button>
-          </div>
-
-
-          <p class="subtitle is-4 is-hidden" #welcomeMessage>Welcome, {{ appData.user.firstName }}!</p>
-
-        </div>
+      <div class="hover-color">
+        <figure>
+          <img src="assets/images/StockManagerLogoV1.png" width="300px" height="300px">
+        </figure>
       </div>
+      <p class="title is-2">{{ appData.title }}</p>
+      <div *ngIf="loginButton">
+        <app-icon-button [button]="loginButton" (click)="loginButtonClicked()"></app-icon-button>
+      </div>
+
     </div>
   </div>
 

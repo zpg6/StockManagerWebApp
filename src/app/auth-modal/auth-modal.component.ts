@@ -47,6 +47,8 @@ export class AuthModalComponent implements OnInit {
 
   notificationContent: string = '';
 
+  disabled = false;
+
   //set the notification
   setNotification(to: string) {
     this.notificationContent = to
@@ -320,28 +322,74 @@ export class AuthModalComponent implements OnInit {
     }
   }
 
-  login(email: string, password: string) {
-    // const body= new UserModel();
-    // body.email = email;
-    // body.password = password;
-    // const url = this.appData.apiRootURL + '/test-authenticate'
-    // this.http.post<UserModel>(url, body).toPromise().then((response) => {
-    //   console.log('response.userID = ' + response.userID);
-    //   if (response != null && response.userID != null && response.userID.length > 0) {
-    //     console.log('response.userID = ' + response.userID);
-    //     this.appData.user = response;
-    //     this.appData.isAuthenticated = true;
-    //     this.appData.page = NavPage.search;
-    //     this.updateObserver();
-    //   } else {
-    //     console.log('response could not be processed');
-    //   }
-    // }).catch(err => console.log(err))
+  createAccountButtonClicked(){
+    if(this.validateFields()){
+      let invitationCode = this.invitationCodeField.nativeElement.value
+      let firstName = this.firstNameField.nativeElement.value
+      let lastName = this.lastNameField.nativeElement.value
+      let email = this.emailField.nativeElement.value
+      let password = this.passwordField.nativeElement.value
+      this.createAccount(invitationCode,firstName,lastName,email,password);
+    }
+  }
 
-    this.appData.isAuthenticated = true;
-    this.appData.page = NavPage.search;
-    this.appData.user.userRole = UserRole.admin;
-    this.updateObserver();
+  login(email: string, password: string) {
+    this.loginButton.disabled = true;
+    this.loginButton.classAdditions = ' is-loading';
+    const body= new UserModel();
+    body.email = email.toLowerCase();
+    body.password = password;
+    const url = this.appData.apiRootURL + '/user/authenticate'
+    this.http.post<UserModel>(url, body).toPromise().then((response) => {
+      console.log('response.userID = ' + response.userID);
+      if (response != null && response.userID != null && response.userID.length > 0) {
+        console.log('response.userID = ' + response.userID);
+        this.appData.user = response;
+        this.appData.isAuthenticated = true;
+        this.appData.page = NavPage.search;
+        this.updateObserver();
+      } else {
+        console.log('response could not be processed');
+      }
+      this.loginButton.disabled = false;
+      this.loginButton.classAdditions = '';
+    }).catch(err => {
+      console.log(err);
+      this.notificationContent = err.error.text;
+      this.loginButton.disabled = false;
+      this.loginButton.classAdditions = '';
+    })
+  }
+
+  createAccount(invitationCode: string, firstName: string, lastName: string, email: string, password: string) {
+    this.loginButton.disabled = true;
+    this.loginButton.classAdditions = ' is-loading';
+    const body= new UserModel();
+    body.invitationCode = invitationCode;
+    body.firstName = firstName;
+    body.lastName = lastName;
+    body.email = email.toLowerCase();
+    body.password = password;
+    const url = this.appData.apiRootURL + '/user/create'
+    this.http.post<UserModel>(url, body).toPromise().then((response) => {
+      console.log('response.userID = ' + response.userID);
+      if (response != null && response.userID != null && response.userID.length > 0) {
+        console.log('response.userID = ' + response.userID);
+        this.appData.user = response;
+        this.appData.isAuthenticated = true;
+        this.appData.page = NavPage.search;
+        this.updateObserver();
+      } else {
+        console.log('response could not be processed');
+      }
+      this.loginButton.disabled = false;
+      this.loginButton.classAdditions = '';
+    }).catch(err => {
+      console.log(err);
+      this.notificationContent = err.error.text;
+      this.loginButton.disabled = false;
+      this.loginButton.classAdditions = '';
+    })
   }
 
 }

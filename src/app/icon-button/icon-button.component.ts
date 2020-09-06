@@ -76,4 +76,5 @@ export class IconButtonModel {
   size: ButtonSize;
   classAdditions: string;
   clickFunction: ()=>void;
+  disabled: boolean;
 }

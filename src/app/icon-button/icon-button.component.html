@@ -2,7 +2,7 @@
 
 <div *ngIf="this.button.link !== null">
   <a href="{{this.button.link}}">
-    <button class="button {{this.getButtonClassString()}}">
+    <button class="button {{this.getButtonClassString()}}" [disabled]="this.button.disabled">
       <span class="icon">
         <i class="mdi mdi-{{this.button.iconSuffix}} mdi-24px">
         </i>
@@ -15,7 +15,7 @@
 </div>
 
 <div *ngIf="!this.button.link">
-  <button class="button {{this.getButtonClassString()}}" (click)="this.button.clickFunction()">
+  <button class="button {{this.getButtonClassString()}}" (click)="this.button.clickFunction()" [disabled]="this.button.disabled">
     <span class="icon">
       <i class="mdi mdi-{{this.button.iconSuffix}} mdi-24px">
       </i>

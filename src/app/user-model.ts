@@ -6,6 +6,7 @@ export class UserModel {
   email: string = '';
   firstName: string = '';
   lastName: string = '';
+  invitationCode: string = '';
   password: string = '';
   userID: string = '';
   storeID: string = '';

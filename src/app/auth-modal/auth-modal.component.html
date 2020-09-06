@@ -23,7 +23,7 @@
       <!-- If the selected tab is 'Create an Account', the 'Invitation Code' input field will appear -->
       <div *ngIf="tab === 'Create an Account'">
         <div class="field">
-          <label class="label">Invitation Code</label>
+          <label class="label">Invitation Code (Case Sensitive)</label>
           <div class="control has-icons-left has-icons-right">
 
             <input class="input {{ getFieldClass(invitationCodeError) }}" type="text" placeholder="Invitation Code" #invitationCodeField>
@@ -72,7 +72,7 @@
       </div>
 
 
-      
+
       <!-- If the selected tab is 'Create an Account', the 'Last Name' input field will appear -->
       <div *ngIf="tab === 'Create an Account'">
         <div class="field">
@@ -171,7 +171,7 @@
 
 
       <!-- An error while creating account that is unrelated to form validation will appear -->
-      <div *ngIf="showNotification()">
+      <div *ngIf="showNotification()" style="margin-top: 15px;">
         <div class="notification is-danger is-light">
           <button class="delete" (click)="hideNotification()"></button>
           <p>
@@ -185,7 +185,7 @@
 
     </section>
     <footer class="modal-card-foot">
-      
+
       <!-- modal action buttons, etc. go here -->
       <app-icon-button [button]="loginButton" (click)="loginButtonClicked()"></app-icon-button>
 
