@@ -1,7 +1,20 @@
 <section class="hero is-dark is-fullheight">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <p class="title is-2">Results for {{ appData.query !== '' ? appData.query:'[error!!]'}}</p>
+      <p class="title">Results for {{ appData.query !== '' ? appData.query:'[error!!]'}}:</p>
+      <!-- An error while creating account that is unrelated to form validation will appear -->
+      <div *ngIf="showNotification()" style="margin-top: 15px;">
+        <div class="notification is-danger is-light">
+          <button class="delete" (click)="hideNotification()"></button>
+          <p>
+            {{ this.appData.queryError }}
+          </p>
+        </div>
+      </div>
+      <div *ngFor="let item of this.appData.latestQueryResults">
+        <br><br><br>
+        <p class="subtitle">Item Name: {{ item.name }}</p>
+      </div>
     </div>
   </div>
 </section>

@@ -35,4 +35,18 @@ export class ResultsContainerComponent implements OnInit, OnDestroy {
     this.messageService.getMessage()
   }
 
+  //set the notification
+  setNotification(to: string) {
+    this.appData.queryError = to;
+    this.updateObserver()
+  }
+  //remove the notification string
+  hideNotification() {
+    this.appData.queryError = '';
+    this.updateObserver()
+  }
+  //check if there is a notification that needs to be shown
+  showNotification(): boolean {
+    return this.appData.queryError !== ''
+  }
 }

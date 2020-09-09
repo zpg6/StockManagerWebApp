@@ -3,6 +3,8 @@ import { AppData } from '../app-data';
 import { Subscription } from 'rxjs';
 import { MessageService } from '../messaging.service';
 import { NavPage } from '../nav-page.enum';
+import { ItemModel } from '../item-model';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-number-pad',
@@ -14,7 +16,7 @@ export class NumberPadComponent implements OnInit, OnDestroy {
   appData: AppData;
   subscription = new Subscription();
 
-  constructor(private messageService: MessageService) {
+  constructor(private messageService: MessageService, private http: HttpClient) {
       // subscribe to home component messages
       this.subscription = new Subscription()
       this.subscription.add(this.messageService.getMessage().subscribe(message => {
@@ -62,7 +64,7 @@ export class NumberPadComponent implements OnInit, OnDestroy {
     }
     else if (num === 'E') {
       if (this.appData.query.length > 0) {
-        this.appData.page = NavPage.results;
+        this.search();
       }
     }
     else {
@@ -151,5 +153,24 @@ export class NumberPadComponent implements OnInit, OnDestroy {
         this.numbers[3][2] = "E"
         break;
     }
+  }
+
+  search() {
+    const body= new ItemModel();
+    body.userDesignatedID = this.appData.query;
+    body.storeID = this.appData.user.storeID;
+    const url = this.appData.apiRootURL + '/item/query/udid'
+    this.http.post<ItemModel>(url, body).toPromise().then((response) => {
+      console.log('response' + response.userDesignatedID);
+      if (response != null) {
+        this.appData.latestQueryResults = [response];
+        this.appData.page = NavPage.results;
+      } else {
+        console.log('response from API was null for query.');
+      }
+    }).catch(err => {
+      console.log(err);
+      this.appData.queryError = err.error.text;
+    })
   }
 }
