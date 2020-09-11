@@ -164,13 +164,33 @@ export class NumberPadComponent implements OnInit, OnDestroy {
       console.log('response' + response.userDesignatedID);
       if (response != null) {
         this.appData.latestQueryResults = [response];
+
+        const imgBody = new Object();
+        imgBody['id'] = response.id;
+        const imgURL = this.appData.apiRootURL + '/item/image'
         this.appData.page = NavPage.results;
+        this.updateObserver()
+        this.http.post<any>(imgURL, imgBody).toPromise().then((imgResponse) => {
+          this.appData.latestQueryResults.forEach(item => {
+            if (item.id === response.id) {
+              var reader = new FileReader();
+              reader.readAsDataURL(imgResponse.data);
+              reader.onloadend = () => {
+                item.image = reader.result;
+                console.log(item.image)
+              }
+            }
+          })
+        }).catch(err => {
+
+        })
       } else {
         console.log('response from API was null for query.');
       }
     }).catch(err => {
       console.log(err);
       this.appData.queryError = err.error.text;
+      this.updateObserver()
     })
   }
 }

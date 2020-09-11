@@ -22,4 +22,6 @@ export class ItemModel {
   dateLastPurchased: number
 
   storeID: string
+
+  image: any;
 }

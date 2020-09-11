@@ -5,7 +5,7 @@ import { ItemModel } from './item-model';
 export class AppData {
 
   title: string = 'Stock Manager';
-  apiRootURL: string = 'https://4086c4ea04bc.ngrok.io';
+  apiRootURL: string = 'https://8c4da3a6c51c.ngrok.ios';
 
   user: UserModel = new UserModel();
   isAuthenticated: boolean = false;
@@ -19,10 +19,9 @@ export class AppData {
   queryError: string = '';
   latestQueryResults: Array<ItemModel>;
 
-
   constructor() {
     this.title = 'Stock Manager'
-    this.apiRootURL = 'https://4086c4ea04bc.ngrok.io'
+    this.apiRootURL = 'https://8c4da3a6c51c.ngrok.io'
     this.user = new UserModel();
     this.isAuthenticated = false
     this.currentIPAddress = ''

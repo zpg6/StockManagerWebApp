@@ -11,9 +11,15 @@
           </p>
         </div>
       </div>
-      <div *ngFor="let item of this.appData.latestQueryResults">
-        <br><br><br>
-        <p class="subtitle">Item Name: {{ item.name }}</p>
+      <div class="columns is-centered">
+        <div class="column is-half has-text-centered">
+          <div class="box" *ngFor="let item of this.appData.latestQueryResults">
+            <img src="{{item.image |async}}">
+            <h2 class="subtitle has-text-dark">Item Name: {{ item.name }}</h2>
+            <p class="body">ID: {{ item.userDesignatedID }}</p>
+            <p class="body">Total In-Stock Quantity: {{ item.backstockQuantity + item.customerAccessibleQuantity }}</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
