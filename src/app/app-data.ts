@@ -5,7 +5,7 @@ import { ItemModel } from './item-model';
 export class AppData {
 
   title: string = 'Stock Manager';
-  apiRootURL: string = 'https://d163edaf9459.ngrok.io';
+  apiRootURL: string = 'https://smapi.ngrok.io';
 
   user: UserModel = new UserModel();
   isAuthenticated: boolean = false;
@@ -17,17 +17,6 @@ export class AppData {
 
   query: string = '';
   queryError: string = '';
-  latestQueryResults: Array<ItemModel>;
-
-  constructor() {
-    this.title = 'Stock Manager'
-    this.apiRootURL = 'https://d163edaf9459.ngrok.io'
-    this.user = new UserModel();
-    this.isAuthenticated = false
-    this.currentIPAddress = ''
-    this.page = NavPage.landing
-    this.query = '';
-    this.latestQueryResults = new Array<ItemModel>();
-  }
+  latestQueryResults = Array<ItemModel>();
 
 }

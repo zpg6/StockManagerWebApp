@@ -23,5 +23,5 @@ export class ItemModel {
 
   storeID: string
 
-  image: any;
+  imageURL: string;
 }
