@@ -19,4 +19,6 @@ export class AppData {
   queryError: string = '';
   latestQueryResults = Array<ItemModel>();
 
+  addTaskModalOpen = false;
+
 }

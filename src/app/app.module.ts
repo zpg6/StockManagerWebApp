@@ -23,6 +23,8 @@ import { StoresContainerComponent } from './stores-container/stores-container.co
 import { AccountsContainerComponent } from './accounts-container/accounts-container.component';
 import { ApiKeysContainerComponent } from './api-keys-container/api-keys-container.component';
 import { ResultsContainerComponent } from './results-container/results-container.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { AddTaskComponent } from './add-task/add-task.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ResultsContainerComponent } from './results-container/results-container
     StoresContainerComponent,
     AccountsContainerComponent,
     ApiKeysContainerComponent,
-    ResultsContainerComponent
+    ResultsContainerComponent,
+    TasksComponent,
+    AddTaskComponent
   ],
   imports: [
     BrowserModule,

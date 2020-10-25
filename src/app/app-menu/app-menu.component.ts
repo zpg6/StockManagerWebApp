@@ -69,18 +69,13 @@ export class AppMenuComponent implements OnInit, OnDestroy {
     this.updateObserver();
   }
 
-  toggleStores() {
-    this.appData.page = NavPage.stores;
+  toggleTasks() {
+    this.appData.page = NavPage.tasks;
     this.updateObserver();
   }
 
-  toggleAccounts() {
-    this.appData.page = NavPage.accounts;
-    this.updateObserver();
-  }
-
-  toggleAPIKeys() {
-    this.appData.page = NavPage.apiKeys;
+  toggleAssignTasks() {
+    this.appData.page = NavPage.assignTasksModal;
     this.updateObserver();
   }
 
@@ -88,16 +83,12 @@ export class AppMenuComponent implements OnInit, OnDestroy {
     return this.appData.page == NavPage.search;
   }
 
-  showStores(): boolean {
-    return this.appData.page == NavPage.stores;
+  showTasks(): boolean {
+    return this.appData.page == NavPage.tasks;
   }
 
-  showAccounts(): boolean {
-    return this.appData.page == NavPage.accounts;
-  }
-
-  showAPIKeys(): boolean {
-    return this.appData.page == NavPage.apiKeys;
+  addTask(): boolean {
+    return this.appData.page == NavPage.assignTasksModal;
   }
 
   showResults():boolean {

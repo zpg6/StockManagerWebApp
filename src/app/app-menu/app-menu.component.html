@@ -23,19 +23,9 @@
       </p>
 
       <ul class="menu-list" *ngIf="isAdmin()">
-        <li><a class="{{ showStores() ? 'is-active':'' }}" (click)="toggleStores()">Stores</a></li>
-        <li><a class="{{ showAccounts() ? 'is-active':'' }}" (click)="toggleAccounts()">Accounts</a></li>
+        <li><a class="{{ showTasks() ? 'is-active':'' }}" (click)="toggleTasks()">Tasks</a></li>
       </ul>
 
-      <br>
-      <p class="menu-label" *ngIf="isAdmin() || isDeveloper()">
-        Developers
-      </p>
-
-      <ul class="menu-list" *ngIf="isAdmin() || isDeveloper()">
-        <li><a class="{{ showAPIKeys() ? 'is-active':'' }}" (click)="toggleAPIKeys()">API Keys</a></li>
-        <li><a>API Reference</a></li>
-      </ul>
 
       <br><br>
 

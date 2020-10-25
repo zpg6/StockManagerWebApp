@@ -9,16 +9,8 @@
       <app-search-page-container></app-search-page-container>
     </div>
 
-    <div *ngIf="showStores()">
-      <app-stores-container></app-stores-container>
-    </div>
-
-    <div *ngIf="showAccounts()">
-      <app-accounts-container></app-accounts-container>
-    </div>
-
-    <div *ngIf="showAPIKeys()">
-      <app-api-keys-container></app-api-keys-container>
+    <div *ngIf="showTasks()">
+      <app-tasks></app-tasks>
     </div>
 
     <div *ngIf="showResults()">
@@ -27,3 +19,5 @@
 
   </div>
 </div>
+
+<app-add-task></app-add-task>
